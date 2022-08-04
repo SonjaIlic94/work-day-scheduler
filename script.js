@@ -3,7 +3,6 @@ const currentTime = moment().format("MMMM Do YYYY, HH:mm");
 var block = document.querySelector("#time-block");
 document.querySelector("#currentDay").innerHTML = "Today's date is " + currentTime;
 
-
 // possible schedule times
 const blockTime = [
     "9",
@@ -17,6 +16,7 @@ const blockTime = [
     "17"
 ]
 
+// display time blocks
 function scheduleBlockGenerator() {
     for (let i = 0; i < blockTime.length; i++) {
 
@@ -29,7 +29,7 @@ function scheduleBlockGenerator() {
         // input the time
         var hour = document.createElement("p");
         hour.className = "hour col-1";
-        //use the arry to fill this in
+        //use the array to fill this in
         hour.innerHTML = blockTime[i] + ":00";
         makeBlockSection.appendChild(hour);
 
@@ -38,10 +38,9 @@ function scheduleBlockGenerator() {
         scheduleInput.className = "textarea col-9";
         scheduleInput.setAttribute("type", "text");
         scheduleInput.setAttribute("placeholder", "Enter to-do item here");
-        scheduleInput.setAttribute("id", blockTime[i]);
-
-        scheduleInput.innerHTML = localStorage.getItem(blockTime[i]);
-
+        //genereate unique id for each textarea
+        scheduleInput.setAttribute("id", "text" + i);
+        scheduleInput.value = localStorage.getItem(blockTime[i]);
         makeBlockSection.appendChild(scheduleInput);
 
         //save button
@@ -49,16 +48,19 @@ function scheduleBlockGenerator() {
         saveBtn.className = "saveBtn";
         saveBtn.setAttribute("type", "submit");
         saveBtn.textContent = "Save Schedule Item";
-        //saveBtn.setAttribute("id", blockTime[i]);
-        makeBlockSection.appendChild(saveBtn);
 
+        //save on click event
         saveBtn.addEventListener('click', function (event) {
             event.preventDefault();
-            console.log("clicked");
-            console.log(scheduleInput.value);
-            saveTask(hourKey, userText);
-            console.log(localStorage.getItem(value));
+            //generate storage key = time of the block
+            let timeKey = blockTime[i];
+            //generate storage value = specific textarea id value
+            let userText = document.getElementById("text" + i).value;
+            saveTask(timeKey, userText);
         });
+        makeBlockSection.appendChild(saveBtn);
+
+        // compare time array to current time
         let compareTime = moment().hour();
         if (blockTime[i] == compareTime) {
             scheduleInput.className = "textarea col-9 present";
@@ -70,20 +72,11 @@ function scheduleBlockGenerator() {
             scheduleInput.className = "textarea col-9 past";
         }
     };
-    //local storeage
-    function saveTask(key, value) {
-        console.log("saving");
-        localStorage.setItem(key, value);
-        console.log(localStorage.getItem(key));
+
+    //local storage
+    function saveTask(timeKey, userText) {
+        localStorage.setItem(timeKey, userText);
     }
 };
 
 scheduleBlockGenerator();
-
-
- //be able to type in the time blocks
- // time blocks must know whta time it currently is
- // if event as happened, block is grey
- // if event iscurrent, block is red
- // if event is future, block is green
- // time blocks have save feature (local storage)
