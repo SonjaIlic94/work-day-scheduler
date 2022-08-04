@@ -2,7 +2,8 @@
 
 ## Description
 Tired of forgetting all your important stuff? Never forget an anniversary again with Work Day Scheduler! Not that your relationship is work of course...
-Work Day Scheduler will let you plan your whole work day! Simply type in what task you can't wait to get to under the desired time slot and you're ready for productivity! Accidentally got out of the page cuz your boss came by and you didn't want to look like you're slacking off? Have no fear - WDS will save all your tasks for you!
+
+Work Day Scheduler will let you plan your whole work day! Simply type in what task you can't wait to get to under the desired time slot and you're ready for productivity. Accidentally got out of the page cuz your boss came by and you didn't want to look like you're slacking off? Have no fear - WDS will save all your tasks for you!
 
 ## How's it made?
 1. HTML
