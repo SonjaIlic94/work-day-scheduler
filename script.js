@@ -1,27 +1,26 @@
 // display the current time
-const currentTime = moment().format('YYYY-MM-DD');
+const currentTime = moment().format("MMMM Do YYYY, HH:mm");
 var block = document.querySelector("#time-block");
 document.querySelector("#currentDay").innerHTML = "Today's date is " + currentTime;
-
+var saveBtnClick = document.querySelector("#saveBtn");
 
 // possible schedule times
 const blockTime = [
-    "9 AM",
-    "10 AM",
-    "11 AM",
-    "12 PM",
-    "1 PM",
-    "2 PM",
-    "3 PM",
-    "4 PM",
-    "5 PM"
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17"
 ]
 
-function timeBlockGenerator() {
+function scheduleBlockGenerator() {
     for (let i = 0; i < blockTime.length; i++) {
 
         // create time blocks 9-5
-
         // makes the horizontal card
         var makeBlockSection = document.createElement("div");
         makeBlockSection.className = "row time-block";
@@ -31,7 +30,7 @@ function timeBlockGenerator() {
         var hour = document.createElement("p");
         hour.className = "hour col-1";
         //use the arry to fill this in
-        hour.innerHTML = blockTime[i];
+        hour.innerHTML = blockTime[i] + ":00";
         makeBlockSection.appendChild(hour);
 
         // input the to do task
@@ -42,20 +41,33 @@ function timeBlockGenerator() {
         scheduleInput.setAttribute("id", "schedule-input");
         makeBlockSection.appendChild(scheduleInput);
 
-
         //save button
         var saveBtn = document.createElement("button");
         saveBtn.className = "saveBtn";
         saveBtn.setAttribute("type", "submit");
         saveBtn.textContent = "Save Schedule Item";
         makeBlockSection.appendChild(saveBtn);
-    };
 
-    //check the current time 
-    moment().format('LT');
+        let compareTime = moment().hour();
+        if (blockTime[i] == compareTime) {
+            scheduleInput.className = "textarea col-9 present";
+        }
+        else if (blockTime[i] > compareTime) {
+            scheduleInput.className = "textarea col-9 future";
+        }
+        else {
+            scheduleInput.className = "textarea col-9 past";
+        }
+
+    };
+    saveBtnClick.addEventListener('click', function () {
+        console.log("clicked");
+    });
 };
 
-timeBlockGenerator();
+scheduleBlockGenerator();
+
+
 //be able to type in the time blocks
 // time blocks must know whta time it currently is
 // if event as happened, block is grey
