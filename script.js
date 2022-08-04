@@ -17,7 +17,7 @@ const blockTime = [
     "5 PM"
 ]
 
-function timeBlockGenerator(time) {
+function timeBlockGenerator() {
     for (let i = 0; i < blockTime.length; i++) {
 
         // create time blocks 9-5
@@ -29,18 +29,18 @@ function timeBlockGenerator(time) {
 
         // input the time
         var hour = document.createElement("p");
-        hour.className = "hour";
+        hour.className = "hour col-1";
         //use the arry to fill this in
-        hour.textContent = blockTime[time];
-        block.appendChild(hour);
+        hour.innerHTML = blockTime[i];
+        makeBlockSection.appendChild(hour);
 
         // input the to do task
-        var scheduleInput = document.createElement("input");
-        scheduleInput.className = "schedule-input";
+        var scheduleInput = document.createElement("textarea");
+        scheduleInput.className = "textarea col-9";
         scheduleInput.setAttribute("type", "text");
         scheduleInput.setAttribute("placeholder", "Enter to-do item here");
         scheduleInput.setAttribute("id", "schedule-input");
-        hour.appendChild(scheduleInput);
+        makeBlockSection.appendChild(scheduleInput);
 
 
         //save button
@@ -48,8 +48,11 @@ function timeBlockGenerator(time) {
         saveBtn.className = "saveBtn";
         saveBtn.setAttribute("type", "submit");
         saveBtn.textContent = "Save Schedule Item";
-        block.appendChild(saveBtn);
+        makeBlockSection.appendChild(saveBtn);
     };
+
+    //check the current time 
+    moment().format('LT');
 };
 
 timeBlockGenerator();
