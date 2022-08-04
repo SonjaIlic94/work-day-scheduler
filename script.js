@@ -2,7 +2,7 @@
 const currentTime = moment().format("MMMM Do YYYY, HH:mm");
 var block = document.querySelector("#time-block");
 document.querySelector("#currentDay").innerHTML = "Today's date is " + currentTime;
-var saveBtnClick = document.querySelector("#saveBtn");
+
 
 // possible schedule times
 const blockTime = [
@@ -47,6 +47,9 @@ function scheduleBlockGenerator() {
         saveBtn.setAttribute("type", "submit");
         saveBtn.textContent = "Save Schedule Item";
         makeBlockSection.appendChild(saveBtn);
+        saveBtn.addEventListener('click', function () {
+            console.log("clicked");
+        });
 
         let compareTime = moment().hour();
         if (blockTime[i] == compareTime) {
@@ -60,9 +63,7 @@ function scheduleBlockGenerator() {
         }
 
     };
-    saveBtnClick.addEventListener('click', function () {
-        console.log("clicked");
-    });
+
 };
 
 scheduleBlockGenerator();
