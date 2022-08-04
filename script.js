@@ -17,20 +17,39 @@ const blockTime = [
     "5 PM"
 ]
 
-function timeBlockGenerator() {
-    // create time blocks 9-5
+function timeBlockGenerator(time) {
+    for (let i = 0; i < blockTime.length; i++) {
 
-    // makes the horizontal card
-    var makeBlockSection = document.createElement("row");
-    makeBlockSection.className = "block-section";
-    block.appendChild(makeBlockSection);
+        // create time blocks 9-5
 
-    var scheduleInput = document.createElement("input");
-    scheduleInput.className = "schedule-input";
-    scheduleInput.setAttribute("type", "text");
-    scheduleInput.setAttribute("placeholder", "Enter to-do item here")
-    makeBlockSection.appendChild(scheduleInput);
+        // makes the horizontal card
+        var makeBlockSection = document.createElement("div");
+        makeBlockSection.className = "row time-block";
+        block.appendChild(makeBlockSection);
 
+        // input the time
+        var hour = document.createElement("p");
+        hour.className = "hour";
+        //use the arry to fill this in
+        hour.textContent = blockTime[time];
+        block.appendChild(hour);
+
+        // input the to do task
+        var scheduleInput = document.createElement("input");
+        scheduleInput.className = "schedule-input";
+        scheduleInput.setAttribute("type", "text");
+        scheduleInput.setAttribute("placeholder", "Enter to-do item here");
+        scheduleInput.setAttribute("id", "schedule-input");
+        hour.appendChild(scheduleInput);
+
+
+        //save button
+        var saveBtn = document.createElement("button");
+        saveBtn.className = "saveBtn";
+        saveBtn.setAttribute("type", "submit");
+        saveBtn.textContent = "Save Schedule Item";
+        block.appendChild(saveBtn);
+    };
 };
 
 timeBlockGenerator();
