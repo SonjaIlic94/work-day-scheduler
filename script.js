@@ -39,18 +39,23 @@ function scheduleBlockGenerator() {
         scheduleInput.setAttribute("type", "text");
         scheduleInput.setAttribute("placeholder", "Enter to-do item here");
         scheduleInput.setAttribute("id", "schedule-input");
+        let hourKey = blockTime[i];
+        //scheduleInput.innerHTML = localStorage.getItem(blockTime[i]);
         makeBlockSection.appendChild(scheduleInput);
-
         //save button
         var saveBtn = document.createElement("button");
         saveBtn.className = "saveBtn";
         saveBtn.setAttribute("type", "submit");
         saveBtn.textContent = "Save Schedule Item";
         makeBlockSection.appendChild(saveBtn);
-        saveBtn.addEventListener('click', function () {
+        //saveBtn.addEventListener('click', saveTask(hourKey, userText));
+        saveBtn.addEventListener('click', function (event) {
+            event.preventDefault();
             console.log("clicked");
+            let userText = scheduleInput.value;
+            console.log(scheduleInput.value);
+            saveTask(hourKey, userText);
         });
-
         let compareTime = moment().hour();
         if (blockTime[i] == compareTime) {
             scheduleInput.className = "textarea col-9 present";
@@ -61,9 +66,13 @@ function scheduleBlockGenerator() {
         else {
             scheduleInput.className = "textarea col-9 past";
         }
-
     };
-
+    //local storeage
+    function saveTask(key, value) {
+        console.log("saving");
+        localStorage.setItem(key, value);
+        console.log(localStorage.getItem(key));
+    }
 };
 
 scheduleBlockGenerator();
