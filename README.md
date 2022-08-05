@@ -13,5 +13,6 @@ Work Day Scheduler will let you plan your whole work day! Simply type in what ta
 5. Bootstrap
 
 ## Can't wait to get started? Visit the link below!
+https://sonjailic94.github.io/work-day-scheduler/
 
 <img width="1383" alt="Screen Shot 2022-08-03 at 11 13 23 PM" src="https://user-images.githubusercontent.com/104938407/182755770-accd238b-755e-4d67-92d5-486e3671aaab.png">
